@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>Et使用示例网页</title>
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <script src="assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!--头部-->
+    <div class="header">
+        圣光机学院
+    </div>
+    <!--主体-->
+    <div class="main clearfix">
+        <div class="main-left">
+            <!-- 位置1 原1-->
+            <div class="border-container">
+                <div class="name-title">软件情况</div>
+                <ul id="visit">
+                    <li>总访问量：4564</li>
+                    <li>日访问量：545</li>
+                    <li>日新增访问量：51</li>
+                </ul>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!--位置2 原3 各专业各年级多少人，男女生各多少 -->
+            <div class="border-container" id="sit2">
+                <div class="name-title">学院学生基本情况</div>
+                <div id="grades">
+                    <a href="javascript:;" class="a-access" v-for="info in grade" :key="info.item"
+                        @mouseenter="changedata(info.item)" @mouseleave="startAuto()">
+                        <button class="button type1">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <ul class="three-pie clearfix">
+                    <!-- 圆环图 -->
+                    <li>
+                        <div class="name-title">计算机学生基本情况</div>
+                        <div id="sexrate"></div>
+                    </li>
+                    <li>
+                        <div class="name-title">自动化学生基本情况</div>
+                        <div id="householdrate"></div>
+                    </li>
+                </ul>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!--位置3 原5 各分数段 占比人数  -->
+            <div class="border-container" id="sit3">
+                <div class="name-title">{{grade3}}计算机各分数段占比人数</div>
+                <ul class="teacher-pie clearfix">
+                    <li>
+                        <div id="courserateCS"></div>
+                    </li>
+                    <li>
+                        <div id="courserateCS1"></div>
+                    </li>
+                    <li>
+                        <div id="courserateCS2"></div>
+                    </li>
+                    <li>
+                        <div id="courserateCS3"></div>
+                    </li>
+                    <li>
+                        <div id="courserateCS4"></div>
+                    </li>
+                    <li>
+                        <div id="courserateCS5"></div>
+                    </li>
+                </ul>
+                <ul id="tips">
+                    <li id="tip1"></li>&nbsp;90-100&nbsp;&nbsp;
+                    <li id="tip2"></li>&nbsp;80-90&nbsp;&nbsp;
+                    <li id="tip3"></li>&nbsp;70-80&nbsp;&nbsp;
+                    <li id="tip4"></li>&nbsp;60-70&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li id="tip5"></li>&nbsp;0-60&nbsp;&nbsp;
+                </ul>
+                <div class="name-title">{{grade3}}自动化各分数段占比人数</div>
+                <ul id="tips2">
+                    <li id="tip1"></li>&nbsp;90-100&nbsp;&nbsp;
+                    <li id="tip2"></li>&nbsp;80-90&nbsp;&nbsp;
+                    <li id="tip3"></li>&nbsp;70-80&nbsp;&nbsp;
+                    <li id="tip4"></li>&nbsp;60-70&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li id="tip5"></li>&nbsp;0-60&nbsp;&nbsp;
+                </ul>
+                <ul class="teacher-pie clearfix">
+                    <li>
+                        <div id="courserateAuto"></div>
+                    </li>
+                    <li>
+                        <div id="courserateAuto1"></div>
+                    </li>
+                    <li>
+                        <div id="courserateAuto2"></div>
+                    </li>
+                    <li>
+                        <div id="courserateAuto3"></div>
+                    </li>
+                    <li>
+                        <div id="courserateAuto4"></div>
+                    </li>
+                    <li>
+                        <div id="courserateAuto5"></div>
+                    </li>
+                </ul>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+
+        </div>
+        <div class="main-middle">
+            <!-- 位置4  -->
+            <div class="border-container">
+                <div id="radars">
+                    <div id="radar1"></div>
+                    <div id="radar2"></div>
+                    <div id="radar3"></div>
+                    <div id="radar4"></div>
+                </div>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!-- 位置5-->
+            <div class="border-container" id="sit5">
+                <div class="name-title">{{grade5}}总分及各小项分数预测</div>
+                <div id="grades7">
+                    <a href="javascript:;" class="a-access" v-for="info in grades51" :key="info.item"
+                    @mouseenter="changeDataSit5(info.item)" @mouseleave="startAuto5()">
+                        <button class="button7 type7">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <div id="grades7">
+                    <a href="javascript:;" class="a-access" v-for="info in grades52" :key="info.item"
+                    @mouseenter="changeDataSit5(info.item)" @mouseleave="startAuto5()">
+                        <button class="button7 type7">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <div id="edubalance"></div>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!--位置6 原2 各年级各专业小宇宙年变化趋势 -->
+            <div class="border-container" id="sit6">
+                <div class="name-title">{{gradeSit6}}宇宙年变化趋势及预测</div>
+                <div id="grades6">
+                    <a href="javascript:;" class="a-access" v-for="info in gradesSit6" :key="info.item"
+                        @mouseenter="changeDataSit6(info.item)" @mouseleave="startAuto6()">
+                        <button class="button type1">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <div id="graduateyear"></div><!-- 折线图 -->
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+        </div>
+        <div class="main-right">
+            <!-- 位置7 -->
+            <div class="border-container" id="sit7">
+                <div class="name-title">{{grade7}}排行榜</div>
+                <div id="grades7">
+                    <a href="javascript:;" class="a-access" v-for="info in grades71" :key="info.item"
+                    @mouseenter="changeDataSit7(info.item)" @mouseleave="startAuto7()">
+                        <button class="button7 type7">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <div id="grades7">
+                    <a href="javascript:;" class="a-access" v-for="info in grades72" :key="info.item"
+                    @mouseenter="changeDataSit7(info.item)" @mouseleave="startAuto7()">
+                        <button class="button7 type7">
+                            {{info.name}}
+                        </button>
+                    </a>
+                </div>
+                <table class="table table-kingdargen" 
+                @mouseenter="stopchange7()" 
+                @mouseleave="startAuto7()"
+                >
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>姓名</th>
+                            <th>科研</th>
+                            <th>思想</th>
+                            <th>学业</th>
+                            <th>文体</th>
+                            <th>实践</th>
+                            <th>总分</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="info in grade7CSAuto" :key="info.index">
+                            <td>{{info.index}}</td>
+                            <td>{{info.name}}</td>
+                            <td>{{info.score1}}</td>
+                            <td>{{info.score2}}</td>
+                            <td>{{info.score3}}</td>
+                            <td>{{info.score4}}</td>
+                            <td>{{info.score5}}</td>
+                            <td>{{info.score1+info.score2+info.score3+info.score4+info.score5}}</td>
+                        </tr>                       
+                    </tbody>
+                </table>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!-- 位置8 -->
+            <div class="border-container" id="sit8">
+                <div class="name-title">各年级各专业分数</div>
+                <div id="juniorservice"></div>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+            <!-- 位置9 -->
+            <div class="border-container" id="sit9">
+                <div class="name-title">{{gradeSit9}}前十排行榜</div>
+                <div id="changedetail"></div>
+                <span class="top-left border-span"></span>
+                <span class="top-right border-span"></span>
+                <span class="bottom-left border-span"></span>
+                <span class="bottom-right border-span"></span>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/echarts.min.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/map/shandong.js"></script>
+<script src="assets/js/change.js"></script>
+<script src="assets/js/radars.js"></script>
+
+</html>
